@@ -1,7 +1,8 @@
+import './global.css'
 function App() {
   return (
-    <div className="text-red-800 w-full">
-      <p className="mx-auto w-fit">e-commerce project</p>
+    <div className="custom-nav-bg">
+      <p>e-commerce project</p>
     </div>
   );
 }
