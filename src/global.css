@@ -13,7 +13,7 @@
 }
 
 body {
-    background-image: var(--navbar-color);
+    background-image: var(--bg-color);
     min-height: 100vh; 
     background-repeat: no-repeat;
     font-family: var(--roboto-font);

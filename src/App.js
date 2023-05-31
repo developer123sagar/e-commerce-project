@@ -1,9 +1,10 @@
-import './global.css'
+import Navbar from "./components/Navbar";
+import "./global.css";
 function App() {
   return (
-    <div className="custom-nav-bg">
-      <p>e-commerce project</p>
-    </div>
+    <>
+      <Navbar />
+    </>
   );
 }
 
