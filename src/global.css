@@ -4,17 +4,3 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@200&family=Roboto:wght@300;400&display=swap');
 
-:root {
-    --navbar-color: linear-gradient(111.4deg, rgba(7, 7, 9, 1) 6.5%, rgba(27, 24, 113, 1) 93.2%);
-    --bg-color: radial-gradient( circle farthest-corner at 10% 20%,  rgba(176,229,208,1) 42%, rgba(92,202,238,0.41) 93.6% );
-    --cursive-font: 'Great Vibes', sans-serif;
-    --roboto-font: 'Roboto', sans-serif;
-    --poppin-font: 'Poppins', sans-serif;
-}
-
-body {
-    background-image: var(--bg-color);
-    min-height: 100vh; 
-    background-repeat: no-repeat;
-    font-family: var(--roboto-font);
-}
