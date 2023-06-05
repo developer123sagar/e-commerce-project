@@ -1,9 +1,17 @@
-import Navbar from "./components/Navbar";
-import "./global.css";
+import React, {useState} from "react";
+import Login from "./components/Login";
+import Register from "./components/Register";
+
 function App() {
+  const [currentForm, setCurrentForm ]=useState('login');
+
+  const toggleForm = (formName) =>{
+    setCurrentForm(formName);
+  }
   return (
-    <>
-      <Navbar />
+    <>{
+      currentForm === "login"? <Login onFormSwitch={toggleForm}/> : <Register onFormSwitch={toggleForm}/>
+    }
     </>
   );
 }
