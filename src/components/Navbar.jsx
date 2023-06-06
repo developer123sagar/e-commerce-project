@@ -47,10 +47,12 @@ const Navbar = () => {
         <div>
           <IoSearch className="md:hidden text-xl" />
         </div>
+        <Link to="/login">
           <span className="flex flex-col items-center gap-y-1 hover:cursor-pointer">
             <FaUser className="text-base lg:text-lg" color="white" />
             <p className="hidden md:block text-xs lg:text-base">Profile</p>
           </span>
+        </Link>
         <Link to="/wishlist">
           <span className="flex flex-col items-center gap-y-1">
             <FaHeart className="text-base lg:text-lg" color="white" />
