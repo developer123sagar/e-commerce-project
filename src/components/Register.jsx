@@ -1,11 +1,6 @@
-import React, { useState } from "react";
-import lg from "../assets/lg.jpg";
-import rg from "../assets/rg.jpeg";
+import registerImg from "../images/registerImg.jpeg";
 
 const Register = (props) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [name, setName] = useState("");
   return (
     <>
       <div className="w-full h-screen flex absolute top-20">
@@ -67,7 +62,7 @@ const Register = (props) => {
             </button>
           </div>
           <div className="w-full h-[500px] hidden md:block">
-            <img className="w-full h-full" src={rg} alt="Image loading" />
+            <img className="w-full h-full" src={registerImg} alt="Image loading" />
           </div>
         </div>
       </div>
