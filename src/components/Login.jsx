@@ -1,15 +1,15 @@
-import lg from "../assets/lg.jpg";
+import loginImg from "../images/loginImg.jpg";
 import { Link } from "react-router-dom";
 
 const Login = (props) => {
   return (
     <>
       <div className="w-full h-screen flex">
-        <div className="grid grid-cols-1 md:grid-cols-2 m-auto h-[500px] shadow-lg shadow-gray-600 sm:max-w-900px">
+        <div className="grid grid-cols-1 md:grid-cols-2 m-auto h-[500px] shadow-loginImg shadow-gray-600 sm:max-w-900px">
           <div className="w-full h-[500px] hidden md:block">
             <img
               className="w-full h-full object-cover"
-              src={lg}
+              src={loginImg}
               alt="Image loading"
             />
           </div>

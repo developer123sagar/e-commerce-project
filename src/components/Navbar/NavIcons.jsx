@@ -1,18 +1,11 @@
 import { Badge } from "@mui/material";
-import React from "react";
-import { FaHeart, FaUser } from "react-icons/fa";
-import { IoCartSharp, IoSearch } from "react-icons/io5";
 import { Link } from "react-router-dom";
+import { navIconName } from "./NavDatas";
+import { IoSearch } from "react-icons/io5";
 
 const NavIcons = () => {
-  const navLinks = [
-    { name: "Profile", icon: FaUser },
-    { name: "Wishlist", to: "/wishlist", icon: FaHeart },
-    { name: "Cart", to: "/cart", icon: IoCartSharp, isBadge: true },
-  ];
-
   const IconComponents = () => {
-    return navLinks.map((item, index) => (
+    return navIconName.map((item, index) => (
       <Link to={item.to} key={index}>
         {item.isBadge ? (
           <Badge badgeContent={1} color="error">

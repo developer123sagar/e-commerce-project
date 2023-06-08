@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../img/logo.jpeg";
+import footerImg from "../images/footerImg.jpeg"
 import {
   BsTelephone,
   BsFacebook,
@@ -18,8 +18,8 @@ const Footer = () => {
             <div className="max-w-9xl mx-auto">
               <div className="box-content w-full grid grid-auto-fit-lg bg-primary-700 mix-blend-multiply">
                 <img
-                  src={logo}
-                  alt="logo"
+                  src={footerImg}
+                  alt="footerImg"
                   className="w-[400px] h-[250px] object-cover "
                 />
 
