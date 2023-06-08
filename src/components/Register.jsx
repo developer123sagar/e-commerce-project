@@ -8,7 +8,7 @@ const Register = (props) => {
   const [name, setName] = useState("");
   return (
     <>
-      <div className="w-full h-screen flex">
+      <div className="w-full h-screen flex absolute top-20">
         <div className="grid grid-cols-1 md:grid-cols-2 m-auto h-[500px] w-[900px] shadow-lg shadow-gray-600 sm:max-w-800px">
           <div className="p-4 flex flex-col justify-around">
             <form>
@@ -18,7 +18,7 @@ const Register = (props) => {
                   className="border p-2 mr-2"
                   type="text"
                   placeholder="Yourname"
-                  autocomplete="off"
+                  autoComplete="off"
                   name="name"
                   id="name"
                 />
@@ -26,7 +26,7 @@ const Register = (props) => {
                   className="border p-2 mr-2"
                   type="email"
                   placeholder="Youremail@gmail.com"
-                  autocomplete="off"
+                  autoComplete="off"
                   name="email"
                   id="email"
                 />
@@ -66,9 +66,9 @@ const Register = (props) => {
               Already have account? Sign In
             </button>
           </div>
-          <div className='w-full h-[500px] hidden md:block'>
-            <img className='w-full h-full' src={rg} alt="Image loading" />
-        </div>
+          <div className="w-full h-[500px] hidden md:block">
+            <img className="w-full h-full" src={rg} alt="Image loading" />
+          </div>
         </div>
       </div>
     </>

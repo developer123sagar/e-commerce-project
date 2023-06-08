@@ -1,35 +1,70 @@
 import { Link } from "react-router-dom";
-import { IoSearch, IoCartSharp } from "react-icons/io5";
-import { FaUser, FaHeart } from "react-icons/fa";
+import { IoSearch } from "react-icons/io5";
 import { HiMenuAlt1 } from "react-icons/hi";
-import { Badge } from "@mui/material";
+import {
+  Drawer,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+} from "@mui/material";
+import React, { useState } from "react";
+import NavIcons from "./NavIcons";
+import { FaGlobe, FaHome, FaUsers } from "react-icons/fa";
+import { ImLeaf } from "react-icons/im"
 
 const Navbar = () => {
+  const [state, setState] = useState({ left: false });
   const navLinks = [
-    { name: "Home", to: "/" },
-    { name: "About Us", to: "/about" },
-    { name: "Category", to: "#", notNavigate: true },
-    { name: "Contact Us", to: "/contact" },
+    { name: "Home", to: "/",icon:FaHome },
+    { name: "About Us", to: "/about",icon:FaUsers },
+    { name: "Category", icon: ImLeaf },
+    { name: "Contact Us", to: "/contact", icon:FaGlobe},
   ];
 
-  const handleClick = (e) => {
-    e.preventDefault();
+  const toggleDrawer = (anchor, open) => (event) => {
+    setState({ ...state, [anchor]: open });
   };
+
+  const list = (anchor) => (
+    <div
+      className="h-full bg-creamy-400 font-roboto"
+      role="presentation"
+      onClick={toggleDrawer(anchor, false)}
+      onKeyDown={toggleDrawer(anchor, false)}
+    >
+      <List>
+        {navLinks.map((text,id) => (
+          <Link to={text.to} key={text.name + id}>
+          <ListItem className="w-full border-b-[2px]">
+            <ListItemButton>
+              <ListItemIcon>
+                <text.icon className="text-2xl"/>
+              </ListItemIcon>
+              <ListItemText className="text-center" primary={text.name} />
+            </ListItemButton>
+          </ListItem>
+          </Link>
+        ))}
+      </List>
+    </div>
+  );
 
   return (
     <div className="w-full bg-primary-700 h-[90px] flex items-center justify-between pl-0 pr-2 lg:px-8 z-10 fixed font-roboto">
       <img
         src="img/logo1.png"
         alt="eclectica"
-        className="h-[80px] md:h-[110px]"
+        className="h-[80px] md:h-[140px]"
       />
       {navLinks.map((item, id) => (
         <Link
+          key={item.name + id}
           className="hidden lg:block ml-6 text-base text-fuchsia-50"
           to={item.to}
-          key={id}
         >
-          <button className="nav" onClick={item.isNavigate && handleClick}>
+          <button className="nav">
             {item.name}
           </button>
         </Link>
@@ -43,32 +78,23 @@ const Navbar = () => {
           placeholder="Search for products"
         />
       </div>
-      <div className="flex basis-2/4 md:basis-0 justify-between items-center gap-x-6 md:gap-x-8 text-fuchsia-50 text-sm md:-ml-16">
-        <div>
-          <IoSearch className="md:hidden text-xl" />
-        </div>
-        <Link to="/login">
-          <span className="flex flex-col items-center gap-y-1 hover:cursor-pointer">
-            <FaUser className="text-base lg:text-lg" color="white" />
-            <p className="hidden md:block text-xs lg:text-base">Profile</p>
-          </span>
-        </Link>
-        <Link to="/wishlist">
-          <span className="flex flex-col items-center gap-y-1">
-            <FaHeart className="text-base lg:text-lg" color="white" />
-            <p className="hidden md:block text-xs lg:text-base">Wishlist</p>
-          </span>
-        </Link>
-        <Badge badgeContent={4} color="error">
-          <Link to="/cart">
-            <span className="flex flex-col items-center gap-y-1">
-              <IoCartSharp className="text-base lg:text-lg" color="white" />
-              <p className="hidden md:block text-xs lg:text-base">Cart</p>
-            </span>
-          </Link>
-        </Badge>
-      </div>
-      <HiMenuAlt1 color="white" className="text-4xl lg:hidden hover:cursor-pointer" />
+      <NavIcons />
+      {["left"].map((anchor, id) => (
+        <React.Fragment key={`left ${id} + ${anchor}`}>
+          <HiMenuAlt1
+            onClick={toggleDrawer(anchor, true)}
+            color="white"
+            className="text-4xl lg:hidden hover:cursor-pointer"
+          />
+          <Drawer
+            anchor={anchor}
+            open={state[anchor]}
+            onClose={toggleDrawer(anchor, false)}
+          >
+            {list(anchor)}
+          </Drawer>
+        </React.Fragment>
+      ))}
     </div>
   );
 };
