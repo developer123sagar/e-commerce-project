@@ -35,7 +35,7 @@ const NavIcons = () => {
       <div>
         <IoSearch className="md:hidden text-xl" />
       </div>
-      {IconComponents()}
+      <IconComponents />
     </div>
   );
 };

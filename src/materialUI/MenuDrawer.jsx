@@ -1,11 +1,18 @@
-import React, { useState } from 'react'
-import { navLinks } from '../components/Navbar/NavDatas';
-import { Link } from 'react-router-dom';
-import { Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
-import { HiMenuAlt1 } from 'react-icons/hi';
+import React, { useState } from "react";
+import { navLinks } from "components/Navbar/NavDatas";
+import { Link } from "react-router-dom";
+import {
+  Drawer,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+} from "@mui/material";
+import { HiMenuAlt1 } from "react-icons/hi";
 
 const MenuDrawer = () => {
-    const [state, setState] = useState({ left: false });
+  const [state, setState] = useState({ left: false });
   const toggleDrawer = (anchor, open) => () => {
     setState({ ...state, [anchor]: open });
   };
@@ -18,16 +25,16 @@ const MenuDrawer = () => {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        {navLinks.map((text,id) => (
+        {navLinks.map((text, id) => (
           <Link to={text.to} key={text.name + id}>
-          <ListItem className="w-full border-b-[2px]">
-            <ListItemButton>
-              <ListItemIcon>
-                <text.icon className="text-2xl"/>
-              </ListItemIcon>
-              <ListItemText className="text-center" primary={text.name} />
-            </ListItemButton>
-          </ListItem>
+            <ListItem className="w-full border-b-[2px]">
+              <ListItemButton>
+                <ListItemIcon>
+                  <text.icon className="text-2xl" />
+                </ListItemIcon>
+                <ListItemText className="text-center" primary={text.name} />
+              </ListItemButton>
+            </ListItem>
           </Link>
         ))}
       </List>
@@ -35,7 +42,7 @@ const MenuDrawer = () => {
   );
   return (
     <>
-        {["left"].map((anchor, id) => (
+      {["left"].map((anchor, id) => (
         <React.Fragment key={`left ${id} + ${anchor}`}>
           <HiMenuAlt1
             onClick={toggleDrawer(anchor, true)}
@@ -52,7 +59,7 @@ const MenuDrawer = () => {
         </React.Fragment>
       ))}
     </>
-  )
-}
+  );
+};
 
-export default MenuDrawer
+export default MenuDrawer;

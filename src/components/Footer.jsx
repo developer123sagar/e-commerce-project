@@ -1,5 +1,5 @@
 import React from "react";
-import footerImg from "../images/footerImg.jpeg"
+import footerImg from "images/footerImg.jpeg"
 import {
   BsTelephone,
   BsFacebook,
