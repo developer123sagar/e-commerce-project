@@ -1,11 +1,7 @@
-import Login from "./components/Login";
-import Navbar from "./components/Navbar/Navbar";
-import Register from "./components/Register";
 import "./global.css";
-import About from "./pages/About";
-import Contact from "./pages/Contact";
-import Home from "./pages/Home";
 import { Route, Routes } from "react-router-dom";
+import { About, Contact, Home, Login, Register } from "pages";
+import Navbar from "components/Navbar/Navbar";
 
 function App() {
   return (

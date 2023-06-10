@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import { IoSearch } from "react-icons/io5";
+import { navLinks } from "./NavDatas";
 import NavIcons from "./NavIcons";
-import { navLinks } from "./NavDatas"
-import MenuDrawer from "../../materialUI/MenuDrawer";
+import MenuDrawer from "materialUI/MenuDrawer";
 
 const Navbar = () => {
   return (
@@ -18,9 +18,7 @@ const Navbar = () => {
           className="hidden lg:block ml-6 text-base text-fuchsia-50"
           to={item.to}
         >
-          <button className="nav">
-            {item.name}
-          </button>
+          <button className="nav">{item.name}</button>
         </Link>
       ))}
       <div className="hidden md:block relative mx-10">
