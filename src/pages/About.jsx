@@ -1,11 +1,8 @@
 import React from 'react'
-import Navbar from '../components/Navbar'
-import Footer from '../components/Footer'
 
 const About = () => {
     return (
         <>
-            <Navbar />
             {/* first section */}
             <div className="relative bg-gradient-to-t from-primary-700 to-gray-600 h-screen  w-full">
                 <img className="h-screen w-screen absolute object-cover mix-blend-overlay" src="img/aboutbackground.jpg" alt="error loading" />
@@ -54,7 +51,6 @@ const About = () => {
                 <img className="h-64 w-96" src="img/aboutimg4.jpg" alt="Error loading" />
                 <img className="h-64 w-96" src="img/aboutimg5.jpg" alt="Error loading" />
             </div>
-            <Footer />
         </>
     )
 }

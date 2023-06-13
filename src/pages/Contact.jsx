@@ -1,9 +1,7 @@
-import { Footer } from "components";
-
 const Contact = () => {
   return (
     <>
-      {/* <div className="flex w-full justify-center items-center absolute top-20">
+      <div className="flex w-full justify-center items-center absolute top-20">
         <div className=" grid flex-col md:flex-row mt-5 bg-primary-700 mix-blend-multiply w-full max-w-4xl p-8 rounded-xl text-black">
           <h1 className="text-center font-bold text-4xl ">Contact Us</h1>
           <br />
@@ -53,8 +51,7 @@ const Contact = () => {
             </div>
           </div>
         </div>
-      </div> */}
-      <Footer />
+      </div>
     </>
   );
 };
