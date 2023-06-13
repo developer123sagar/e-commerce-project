@@ -1,10 +1,7 @@
-import React from 'react'
-
-
 const Contact = () => {
   return (
     // <div className=' bg-primary-700 mix-blend-multiply h-screen'>
-    <div className='flex w-full justify-center items-center  '>
+    <div className='flex w-full justify-center items-center absolute top-20'>
       <div className=' grid flex-col md:flex-row mt-5 bg-primary-700 mix-blend-multiply w-full max-w-4xl p-8 rounded-xl text-black'>
 
         <h1 className='text-center font-bold text-4xl '>
@@ -13,7 +10,7 @@ const Contact = () => {
         <div className='flex flex-col md:flex-row bg-white rounded-lg p-10'>
 
           <div className=' '>
-            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d28266.32840609563!2d85.42446664999999!3d27.67739795!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2snp!4v1686559704748!5m2!1sen!2snp"
+            <iframe title='map' src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d28266.32840609563!2d85.42446664999999!3d27.67739795!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2snp!4v1686559704748!5m2!1sen!2snp"
               className='w-800 h-full '></iframe>
           </div>
 
