@@ -12,7 +12,6 @@ import { Link } from "react-router-dom";
 const Footer = () => {
   return (
     <>
-      <>
         <footer className="bg-gray-100">
           <div className=" pt-3 h-screen ">
             <div className="max-w-9xl mx-auto">
@@ -165,7 +164,6 @@ const Footer = () => {
             </div>
           </div>
         </footer>
-      </>
     </>
   );
 };
