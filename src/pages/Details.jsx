@@ -32,11 +32,11 @@ const Details = () => {
 
   useEffect(() => {
     const filterProduct = () => {
-      const data = selectedDatas.filter((item) => item.uid === item.id);
+      const data = selectedDatas.filter((item) => item.uid === id);
       setSingleProd(data[0])
     };
     filterProduct();
-  }, [selectedDatas]);
+  }, [selectedDatas,id]);
 
   console.log(singleProd)
 
