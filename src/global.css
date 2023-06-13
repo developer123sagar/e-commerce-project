@@ -4,3 +4,25 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@200&family=Roboto:wght@300;400&display=swap');
 
+.h{
+    border: 1px solid red;
+}
+.nav::after{
+    content: "";
+    width: 0;
+    height: 1px;
+    background: #14e225e2;
+    position: absolute;
+    left: 0;
+    bottom: 0px;
+    transition: 0.5s;
+}
+.nav:hover::after{
+    width: 100%;
+}
+.nav{
+    position: relative;
+}
+.nav:hover{
+    color: hsl(39, 96%, 51%);
+}

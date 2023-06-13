@@ -6,15 +6,15 @@ module.exports = {
       colors:{
         primary:{700:'#0f766e'},
         secondary:{400:'#fbbf24'},
+        creamy:{400:"#FFFDD0"},
         // tertiary:{400:'#f7f7f7'},
       },
       fontFamily:{
         'roboto':['Roboto', 'sans-serif'],
         'cursive':['Great Vibes', 'sans-serif'],
-        'poppins':['Poppins', 'sans-serif']
       }
     },
   },
-  plugins: [],
+  plugins: [require('@shrutibalasa/tailwind-grid-auto-fit')],
 }
 

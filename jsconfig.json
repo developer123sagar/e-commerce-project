@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "baseUrl": "src",
+    "paths": {
+      "@materialUI": [
+        "src/materialUI/*"
+      ],
+      "@images": [
+        "src/images/*"
+      ],
+      "@redux": [
+        "src/Redux/*"
+      ]
+    }
+  },
+  "include": [
+    "src"
+  ]
+}
