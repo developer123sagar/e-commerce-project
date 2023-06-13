@@ -2,11 +2,18 @@
   "compilerOptions": {
     "baseUrl": "src",
     "paths": {
-      "@components": ["src/components/*"],
-      "@pages": ["src/pages/*"],
-      "@materialUI": ["src/materialUI/*"],
-      "@images": ["src/images/*"]
+      "@materialUI": [
+        "src/materialUI/*"
+      ],
+      "@images": [
+        "src/images/*"
+      ],
+      "@redux": [
+        "src/Redux/*"
+      ]
     }
   },
-  "include": ["src"]
+  "include": [
+    "src"
+  ]
 }
