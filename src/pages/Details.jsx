@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 const Details = () => {
   const { id, category } = useParams();
   const [selectedDatas, setselectedDatas] = useState([]);
+  console.log(selectedDatas)
   const [singleProd, setSingleProd] = useState([]);
 
   useEffect(() => {
@@ -32,11 +33,11 @@ const Details = () => {
 
   useEffect(() => {
     const filterProduct = () => {
-      const data = selectedDatas.filter((item) => item.uid === item.id);
+      const data = selectedDatas.filter((item) => item.uid === id);
       setSingleProd(data[0])
     };
     filterProduct();
-  }, [selectedDatas]);
+  }, [id,selectedDatas]);
 
   console.log(singleProd)
 
