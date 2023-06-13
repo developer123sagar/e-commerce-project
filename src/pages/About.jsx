@@ -18,7 +18,7 @@ const About = () => {
             <div className="pb-16"></div>
 
             {/* second section */}
-            <div className="text-center text-justify py-16">
+            <div className="text-justify py-16">
                 <h1 className="text-4xl font-semibold px-60 pb-7">About us and our love for<br></br> our work and job.</h1>
                 <p className="pl-96 pr-60">Welcome to Eclectica, your ultimate destination for eclectic home decor! We are a passionate team of design enthusiasts who believe in the beauty of blending styles, cultures, and eras to create truly unique and personalized spaces.<p>At Eclectica, we embrace the idea that your home should be a reflection of your individuality and storytelling. Our carefully curated collection brings together a diverse range of decor pieces from around the world, allowing you to curate a space that is as bold and distinctive as you are.</p>
                 </p>
@@ -31,7 +31,7 @@ const About = () => {
             </div>
 
             {/* fourth section */}
-            <div className="text-center text-justify py-16">
+            <div className="text-justify py-16">
                 <h1 className="text-4xl font-semibold px-60 pb-7">We do not stand still and<br></br> help others develop</h1>
                 <ul className="grid grid-cols-2 gap-12 px-60 list-disc">
                     <li>Quality craftsmanship and attention to detail.</li>
@@ -43,7 +43,7 @@ const About = () => {
             </div>
 
 
-            <div className="text-center text-justify py-16" >
+            <div className="text-justify py-16" >
                 <h1 className="text-4xl font-semibold px-60 pb-7">Huge selection of decorative <br></br>paints and plasters</h1>
                 <p className="pl-96 pr-60">Discover an extensive collection of decorative paints and plasters at Eclectica. We take pride in offering a huge selection that caters to various styles and design preferences. From vibrant colors to subtle textures, our range of paints and plasters allows you to unleash your creativity and bring your unique vision to life. With our commitment to quality, you can trust that our products are not only visually appealing but also durable and long-lasting.</p>
             </div>
