@@ -6,7 +6,7 @@ import { Navbar } from "components";
 function App() {
   return (
     <>
-      <Navbar />
+      {/* <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
@@ -14,7 +14,8 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/details/:category/:id" element={<Details />} />
-      </Routes>
+      </Routes> */}
+      <Contact/>
     </>
   );
 }
