@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import lg from '../assets/lg.jpg';
+import './Register';
 
 const Login = (props) => {
   const [email, setEmail] = useState('');
@@ -20,14 +21,14 @@ const Login = (props) => {
         <form> 
         <h2 className='text-4xl font-bold text-center mb-8'>Eclectica</h2>
        <div>
-       <input className='border p-2 mr-2' type="email" placeholder='Youremail@gmail.com' autocomplete="off" name="email" id="email" />
-        <input className='border p-2 mr-2' type="password" placeholder='Password' name="password" id="password" />
+       <input className='border p-2  mr-2 w-full' type="email" placeholder='Youremail@gmail.com' autocomplete="off" name="email" id="email" />
+        <input className='border p-2 mt-5 mr-2 w-full' type="password" placeholder='Password' name="password" id="password" />
        </div>
-       <button className='w-full py-2 my-2 bg-green-600 hover:bg-green-500'>Sign In</button>
+       <button className='w-full py-2 my-2 bg-primary-700 mix-blend-multiply hover:bg-green-700 text-white'>Sign In</button>
        <p className='text-center'>Forget password or username?</p>
       
       </form>
-      <button onClick={() => props.onFormSwitch('Register')} className='text-center underline'>Dont have an account? Sign Up</button>
+      <a href="./Register.jsx">sign up</a>
         </div>
       </div>
     </div>

@@ -46,7 +46,7 @@ const Register = (props) => {
                   id="number"
                 />
               </div>
-              <button className="w-full py-2 my-2 bg-green-600 hover:bg-green-500">
+              <button className="w-full py-2 my-2 bg-primary-700 mix-blend-multiply hover:bg-green-700 text-white">
                 Sign Up
               </button>
               <button className="w-full py-2 my-2 border-solid border-2 border-current">
