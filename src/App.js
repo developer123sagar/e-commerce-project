@@ -1,12 +1,20 @@
-import React, {useState} from "react";
-import Login from "./components/Login";
-import Register from "./components/Register";
+import "./global.css";
+import { Route, Routes } from "react-router-dom";
+import { About, Contact, Details, Home, Login, Register } from "pages";
+import { Navbar } from "components";
 
 function App() {
   return (
-    <>{
-      currentForm === "login"? <Login onFormSwitch={toggleForm}/> : <Register onFormSwitch={toggleForm}/>
-    }
+    <>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/details/:category/:id" element={<Details />} />
+      </Routes>
     </>
   );
 }
