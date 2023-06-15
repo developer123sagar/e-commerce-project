@@ -3,12 +3,13 @@ import { IoSearch } from "react-icons/io5";
 import { navLinks } from "./NavDatas";
 import NavIcons from "./NavIcons";
 import MenuDrawer from "materialUI/MenuDrawer";
+import logo from "images/logo1.png"
 
 const Navbar = () => {
   return (
-    <div className="w-full bg-primary-700 h-[90px] flex items-center justify-between pl-0 pr-2 lg:px-8 z-10 fixed font-roboto">
+    <div className="w-full bg-primary-700 h-[90px] flex items-center justify-between pl-0 pr-2 lg:px-8 z-10 fixed top-0 left-0 font-roboto">
       <img
-        src="img/logo1.png"
+        src={logo}
         alt="eclectica"
         className="h-[80px] md:h-[140px]"
       />

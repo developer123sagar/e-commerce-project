@@ -4,4 +4,4 @@ import Footer from "./Footer";
 import Main from "./Main";
 import Category from "./Category";
 
-export { Navbar, NavIcons, Footer, Main, Category  };
+export { Navbar, NavIcons, Footer, Main, Category };

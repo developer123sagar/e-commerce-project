@@ -12,7 +12,7 @@ import { Link } from "react-router-dom";
 const Footer = () => {
   return (
     <>
-        <footer className="bg-gray-100">
+        <div className="bg-gray-100">
           <div className=" pt-3 h-screen ">
             <div className="max-w-9xl mx-auto">
               <div className="box-content w-full grid grid-auto-fit-lg bg-primary-700 mix-blend-multiply">
@@ -163,7 +163,7 @@ const Footer = () => {
               </span>
             </div>
           </div>
-        </footer>
+        </div>
     </>
   );
 };
