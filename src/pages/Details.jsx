@@ -1,6 +1,5 @@
 import { RequestAPI } from "RequestAPI";
 import axios from "axios";
-import { Footer } from "components";
 import React, { useEffect, useState } from "react";
 import { AiOutlineShoppingCart, AiOutlineStar } from "react-icons/ai";
 import { FaHeart, FaStar } from "react-icons/fa";
