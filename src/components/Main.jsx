@@ -3,7 +3,7 @@ import home from 'images/home.jpg'
 const Main = () => {
   return (
     <>
-      <div className="w-full h-screen bg-gray-200 mix-blend-multiply m-0 p-0 ">
+      <div className="w-full h-screen bg-gray-200 mix-blend-multiply font-roboto">
         <div className="h-full w-2/3 bg-primary-700 mix-blend-multiply">
           <div className="absolute top-20 left-10 w-70 md: flex-row items-center sm:text-sm">
             <h1 className="text-5xl font-bold text-center mb-4 mt-20 text-secondary-400 ">
@@ -24,7 +24,7 @@ const Main = () => {
             <img
               src={home}
               alt="Error loading"
-              className="ml-64 mt-36 max-h-2xl max-w-2xl"
+              className="ml-64 mt-36 max-h-2xl max-w-[39rem]"
             />
           </div>
         </div>
