@@ -1,12 +1,15 @@
 import { RequestAPI } from "RequestAPI";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { AiOutlineShoppingCart, AiOutlineStar } from "react-icons/ai";
+import { FaHeart, FaStar } from "react-icons/fa";
+import { IoNewspaperOutline } from "react-icons/io5";
 import { useParams } from "react-router-dom";
 
 const Details = () => {
   const { id, category } = useParams();
   const [selectedDatas, setselectedDatas] = useState([]);
-  const [singleProd, setSingleProd] = useState([]);
+  const [singleProd, setSingleProd] = useState();
 
   useEffect(() => {
     const getAPI = () => {
@@ -32,15 +35,165 @@ const Details = () => {
 
   useEffect(() => {
     const filterProduct = () => {
-      const data = selectedDatas.filter((item) => item.uid === id);
-      setSingleProd(data[0])
+      const data = selectedDatas.find((item) => item.uid === id);
+      setSingleProd(data);
     };
     filterProduct();
-  }, [selectedDatas,id]);
+  }, [id, selectedDatas]);
 
-  console.log(singleProd)
+  // each product images
+  const prodImg = singleProd && [
+    singleProd.primaryImage,
+    ...singleProd.additionalImages,
+  ];
 
-  return <div className="absolute top-32 p-2">hi</div>;
+  const rates =
+    singleProd &&
+    singleProd.rating?.rating &&
+    Object.values(singleProd.rating).slice(2);
+
+  return (
+    <>
+      <div className="absolute top-24 p-2 flex gap-4 w-full font-roboto">
+        {singleProd && (
+          <>
+            {/* image part */}
+            <div className="basis-1/2 flex gap-4 flex-wrap">
+              {prodImg.map((img, id) => (
+                <img
+                  key={id}
+                  src={img}
+                  alt="product"
+                  className="h-[450px] w-[320px] object-cover shadow-xl rounded border-gray-200 border-[1px]"
+                />
+              ))}
+            </div>
+            {/* product details part */}
+            <div className="basis-1/2 pl-10">
+              <p className="text-xl font-semibold mb-1">{singleProd.title}</p>
+              <p className="text-gray-500 mb-1 text-lg">
+                {singleProd.subtitle}
+              </p>
+              <p className="mb-2">
+                <span className="text-lg font-semibold">
+                  Rs.{singleProd.price}
+                </span>
+                &nbsp;&nbsp;
+                <span className="line-through text-lg text-gray-500">
+                  {" "}
+                  Rs.{singleProd.MRP}
+                </span>
+                <span className="text-orange-500 text-lg">
+                  &nbsp;&nbsp; (
+                  {singleProd.disPercentage ? (
+                    singleProd.disPercentage
+                  ) : (
+                    <>Rs. {singleProd.discount}</>
+                  )}
+                  OFF)
+                </span>
+              </p>
+              <p className="text-sm text-pink-600 mb-4">Inclusive all taxes</p>
+              <div className="flex gap-4 mb-5">
+                <button className="w-[30%] flex items-center justify-center gap-3 bg-emerald-400 py-3 px-2 rounded text-white shadow-lg">
+                  ADD TO CART <AiOutlineShoppingCart size={25} />
+                </button>
+                <button className="w-[30%] flex items-center justify-center gap-3 bg-purple-400 py-3 px-2 rounded text-white shadow-lg">
+                  WISHLIST <FaHeart size={25} />
+                </button>
+              </div>
+              <p className="mb-4">
+                Seller:{" "}
+                <span className="text-lime-600">{singleProd.seller}</span>
+              </p>
+              <p className="text-gray-500 text-sm pb-5 border-b-[1px] border-gray-500 w-full">
+                100% Original Products <br /> Pay on delivery might be available{" "}
+                <br /> Easy 7 days returns and exchanges
+              </p>
+
+              <p className="pt-5 text-lg font-semibold w-[30%] flex items-center gap-2">
+                Product Details <IoNewspaperOutline />
+              </p>
+              <div className="text-gray-600">
+                <p>Set Content: {singleProd?.product_details?.setContent}</p>
+                <p>Colour: {singleProd?.product_details?.color}</p>
+                {singleProd?.product_details?.material && (
+                  <p>Material: {singleProd?.product_details?.material}</p>
+                )}
+                {singleProd?.product_details?.pattern && (
+                  <p>Pattern: {singleProd?.product_details?.pattern}</p>
+                )}
+              </div>
+
+              <p className="font-semibold text-lg mt-5">Size & Fit</p>
+              <p className="text-gray-600">Dimension: {singleProd.size}</p>
+
+              {singleProd.care && (
+                <>
+                  <p className="font-semibold text-lg mt-5">Care</p>
+                  <p className="text-gray-600">Care: {singleProd.care}</p>
+                </>
+              )}
+
+              {singleProd.features && (
+                <>
+                  <p className="font-semibold text-lg mt-5">Features</p>
+                  <p className="text-gray-600">{singleProd.features}</p>
+                </>
+              )}
+
+              {singleProd.rating?.rating && (
+                <>
+                  <div className="w-[80%] mt-5 border-t-[1px] border-gray-500" />
+                  <p className="font-semibold w-[30%] flex items-center gap-1 text-lg mt-5">
+                    Ratings <AiOutlineStar size={23} />
+                  </p>
+                  <div className="flex">
+                    <div className="mt-5 flex items-center pr-6 border-r-[1px] border-gray-500">
+                      <div className="mt-5">
+                        <div className="flex items-center gap-2">
+                          <p className="text-4xl">
+                            {singleProd.rating?.rating}
+                          </p>
+                          <FaStar size={25} color="green" />
+                        </div>
+                        <p className="mt-1 text-gray-500">
+                          {singleProd.rating?.ratedUser} verified buyers
+                        </p>
+                      </div>
+                    </div>
+                    <div>
+                      {rates.map((rate, id) => (
+                        <div
+                          key={id + Math.random() * 2}
+                          className="flex flex-col"
+                        >
+                          <div className="mt-5 ml-5 flex items-center gap-4">
+                            <label
+                              htmlFor="fiveStar"
+                              className="flex items-center gap-1 text-gray-500 text-sm"
+                            >
+                              {rates.length - id} <AiOutlineStar />
+                            </label>
+                            <progress
+                              className="h-[6px] border-red-500 text-red-600"
+                              value={parseInt(rate)}
+                              max={parseInt(singleProd.rating?.ratedUser)}
+                            />
+                            <p>{rate}</p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </>
+              )}
+            </div>
+          </>
+        )}
+      </div>
+    </>
+  );
 };
 
 export default Details;
