@@ -3,10 +3,10 @@ import { ImLeaf } from "react-icons/im";
 import { IoCartSharp } from "react-icons/io5";
 
 export const navLinks = [
-  { name: "Home", to: "/", icon: FaHome },
-  { name: "About Us", to: "/about", icon: FaUsers },
-  { name: "Category", icon: ImLeaf, categoryMenu: true },
-  { name: "Contact Us", to: "/contact", icon: FaGlobe },
+  { name: "HOME", to: "/", icon: FaHome },
+  { name: "ABOUT US", to: "/about", icon: FaUsers },
+  { name: "CATEGORY", icon: ImLeaf, categoryMenu: true },
+  { name: "CONTACT US", to: "/contact", icon: FaGlobe },
 ];
 
 export const navIconName = [

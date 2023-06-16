@@ -165,7 +165,7 @@ const Details = () => {
                     <div>
                       {rates.map((rate, id) => (
                         <div
-                          key={id + Math.random() * 2}
+                          key={`${id}.productDetails`}
                           className="flex flex-col"
                         >
                           <div className="mt-5 ml-5 flex items-center gap-4">
