@@ -1,9 +1,12 @@
 import registerImg from "images/registerImg.jpeg";
+import {FaGithub} from "react-icons/fa";
+import {FaGoogle} from "react-icons/fa";
+import {FaInstagram} from "react-icons/fa";
 
 const Register = (props) => {
   return (
     <>
-      <div className="w-full h-screen flex absolute top-20">
+      <div className="w-full h-screen flex absolute top-20 font-roboto">
         <div className="grid grid-cols-1 md:grid-cols-2 m-auto h-[500px] w-[900px] shadow-lg shadow-gray-600 sm:max-w-800px">
           <div className="p-4 flex flex-col justify-around">
             <form>
@@ -41,17 +44,18 @@ const Register = (props) => {
                   id="number"
                 />
               </div>
-              <button className="w-full py-2 my-2 bg-primary-700 mix-blend-multiply hover:bg-green-700 text-white">
-                Sign Up
+              
+              <button className="w-full py-2 my-2 bg-primary-700 mix-blend-multiply hover:bg-green-700 text-white" >
+              Sign Up
               </button>
               <button className="w-full py-2 my-2 border-solid border-2 border-current">
-                Sign in with Google
+              <div className="flex justify-center gap-2 items-center w-full"><FaGoogle/> Sign in with Google</div>
               </button>
               <button className="w-full py-2 my-2 border-solid border-2 border-current">
-                Sign in with Instagram
+              <div className="flex justify-center gap-2 items-center w-full "><FaInstagram/>Sign in with Instagram</div>
               </button>
               <button className="w-full py-2 my-2 border-solid border-2 border-current">
-                Sign in with Github
+              <div className="flex justify-center gap-2 items-center w-full "><FaGithub/>Sign in with Github</div>
               </button>
             </form>
             <button
@@ -60,6 +64,7 @@ const Register = (props) => {
             >
               Already have account? Sign In
             </button>
+            
           </div>
           <div className="w-full h-[500px] hidden md:block">
             <img className="w-full h-full" src={registerImg} alt="register img" />

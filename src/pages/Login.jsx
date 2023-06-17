@@ -38,7 +38,9 @@ const Login = (props) => {
               </button>
               <p className="text-center">Forget password or username?</p>
             </form>
-            <Link href="./Register.jsx">sign up</Link>
+            <div className="text-center underline">
+            <Link href="./Register.jsx">Don't have an account? Sign Up</Link>
+            </div>
           </div>
         </div>
       </div>
