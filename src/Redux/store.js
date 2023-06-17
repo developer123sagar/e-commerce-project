@@ -1,10 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
-import PlanterReducer from "./Slices/PlanterSlice";
-import VasesReducer from "./Slices/VaseSlice"
+import cartReducer from "./Slices/CartProduct";
 
 export const store = configureStore({
-    reducer: {
-        planters: PlanterReducer,
-        vases: VasesReducer,
-    }
-})
+  reducer: {
+    cart: cartReducer,
+  },
+});

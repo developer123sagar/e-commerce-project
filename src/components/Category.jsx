@@ -5,13 +5,21 @@ import axios from "axios";
 import SkeletonUI from "materialUI/SkeletonUI";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
+import { useDispatch } from "react-redux";
+import { addProduct } from "Redux/Slices/CartProduct";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const Category = (props) => {
+  // props destructuring
   const { API } = props;
+
+  // usestate
   const [data, setData] = useState([]);
   const [hoveredItem, setHoveredItem] = useState(null);
   const [loading, setLoading] = useState(false);
 
+  // api calling
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
@@ -26,8 +34,31 @@ const Category = (props) => {
     fetchData();
   }, [API]);
 
+  // dispathc func calling
+  const dispatch = useDispatch();
+
+  const addtoCart = (product) => {
+    dispatch(addProduct(product));
+    toastMsg(product);
+  };
+
+  // toast message
+  const toastMsg = (prodName) => {
+    toast.success(`${prodName.title} added in your cart`, {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+      className:"w-fit"
+    });
+  };
   return (
     <>
+      <ToastContainer />
       <div className="w-full grid grid-cols-6 gap-x-3 gap-y-10 font-roboto">
         {loading ? (
           <>
@@ -76,17 +107,18 @@ const Category = (props) => {
                   {item.subtitle}
                 </p>
                 {hoveredItem === id && (
-                  <>
-                    <button className="absolute bottom-16 bg-primary-700 left-0 text-white flex items-center justify-center gap-3 py-2 px-3 w-full overflow-hidden">
-                      <AiOutlineShoppingCart /> Add to Cart
-                    </button>
-                  </>
+                  <button
+                    onClick={() => addtoCart(item)}
+                    className="absolute bottom-16 bg-primary-700 left-0 text-white flex items-center justify-center gap-3 py-2 px-3 w-full overflow-hidden"
+                  >
+                    <AiOutlineShoppingCart /> Add to Cart
+                  </button>
                 )}
                 <p className="px-2 text-sm w-full">
                   Rs. {item.price} &nbsp;
                   <span className="line-through">Rs.{item.MRP}</span>
                   <span className="text-pink-500 text-xs">
-                     &nbsp;(
+                    &nbsp;(
                     {item.disPercentage ? (
                       item.disPercentage
                     ) : (

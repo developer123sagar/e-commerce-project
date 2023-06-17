@@ -4,6 +4,7 @@ import Home from "./Home";
 import Login from "./Login";
 import Register from "./Register";
 import Details from "./Details";
+import Cart from "./Cart";
 
 
-export { About, Contact, Home, Login, Register, Details };
+export { About, Contact, Home, Login, Register, Details, Cart };

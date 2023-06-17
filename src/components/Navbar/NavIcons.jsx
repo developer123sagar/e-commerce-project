@@ -3,14 +3,17 @@ import { Link } from "react-router-dom";
 import { navIconName } from "./NavDatas";
 import { IoSearch } from "react-icons/io5";
 import { useRef } from "react";
+import { useSelector } from "react-redux";
 
 const NavIcons = () => {
+  const { cartDatas } = useSelector(state => state.cart)
+
   const css = useRef()
   const IconComponents = () => {
     return navIconName.map((item, index) => (
       <Link to={item.to} key={index}>
         {item.isBadge ? (
-          <Badge badgeContent={1} color="error">
+          <Badge badgeContent={cartDatas.length} color="error">
             <span
               className="flex flex-col items-center gap-y-1"
             >
