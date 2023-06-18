@@ -55,7 +55,6 @@ const Category = (props) => {
           draggable: true,
           progress: undefined,
           theme: "dark",
-          // className: "w-fit",
         }
       );
     } else {
@@ -75,7 +74,6 @@ const Category = (props) => {
       draggable: true,
       progress: undefined,
       theme: "dark",
-      // className: "w-fit",
     });
   };
   return (

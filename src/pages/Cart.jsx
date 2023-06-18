@@ -1,13 +1,15 @@
+import { addProduct } from "Redux/Slices/CartProduct";
 import { useEffect } from "react";
 import { useState } from "react";
 import { AiFillDelete, AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import { FiHeart } from "react-icons/fi";
 import { GiReturnArrow } from "react-icons/gi";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const Cart = () => {
   const { cartDatas } = useSelector((state) => state.cart);
   const [quantities, setQuantities] = useState({});
+  const dispatch = useDispatch()
 
   const handleQuantityChange = (uid, newValue) => {
     setQuantities((prevQuantities) => ({ ...prevQuantities, [uid]: newValue }));
@@ -16,6 +18,12 @@ const Cart = () => {
   const getPrice = (item, title) => {
     const quantity = quantities[item.uid] || 1;
     return title === "price" ? item.price * quantity : item.MRP * quantity;
+  };
+
+  const handleAddProd = (uid, item) => {
+    const newQuantity = (quantities[uid] || 1) + 1;
+      newQuantity <= 5 && dispatch(addProduct(item));
+      newQuantity <= 5 && handleQuantityChange(uid, newQuantity);
   };
 
   const uniqueCartSet = new Set(cartDatas.map(JSON.stringify));
@@ -126,11 +134,7 @@ const Cart = () => {
                     className="w-[30%] bg-transparent border-[1px] border-black focus:outline-none pl-2"
                   />{" "}
                   <AiOutlinePlus
-                    onClick={() => {
-                      const newQuantity = (quantities[item.uid] || 1) + 1;
-                      newQuantity <= 5 &&
-                        handleQuantityChange(item.uid, newQuantity);
-                    }}
+                    onClick={()=>handleAddProd(item.uid,item)}
                     className="border-[1px] border-gray-500 p-1 hover:cursor-pointer"
                     size={25}
                   />
