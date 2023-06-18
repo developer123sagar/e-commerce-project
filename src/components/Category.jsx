@@ -5,10 +5,10 @@ import axios from "axios";
 import SkeletonUI from "materialUI/SkeletonUI";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addProduct } from "Redux/Slices/CartProduct";
 import { ToastContainer, toast } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 
 const Category = (props) => {
   // props destructuring
@@ -36,24 +36,46 @@ const Category = (props) => {
 
   // dispathc func calling
   const dispatch = useDispatch();
+  const { cartDatas } = useSelector((state) => state.cart);
 
   const addtoCart = (product) => {
-    dispatch(addProduct(product));
-    toastMsg(product);
+    const { uid } = product;
+    const categoryItems = cartDatas.filter(
+      (item) => item.uid === uid
+    );
+    if (categoryItems.length > 4) {
+      toast.error(
+        "You cannot add more than 5 items to the cart",
+        {
+          position: "top-left",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+          // className: "w-fit",
+        }
+      );
+    } else {
+      dispatch(addProduct(product));
+      toastMsg(product);
+    }
   };
 
   // toast message
   const toastMsg = (prodName) => {
     toast.success(`${prodName.title} added in your cart`, {
-      position: "top-right",
-      autoClose: 3000,
+      position: "top-left",
+      autoClose: 2000,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
       draggable: true,
       progress: undefined,
       theme: "dark",
-      className:"w-fit"
+      // className: "w-fit",
     });
   };
   return (

@@ -170,7 +170,7 @@ const Details = () => {
                         >
                           <div className="mt-5 ml-5 flex items-center gap-4">
                             <label
-                              htmlFor="fiveStar"
+                              htmlFor="rating"
                               className="flex items-center gap-1 text-gray-500 text-sm"
                             >
                               {rates.length - id} <AiOutlineStar />
