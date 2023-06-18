@@ -2,7 +2,11 @@ import home from 'images/home.jpg'
 const Main = () => {
   return (
     <>
+<<<<<<< HEAD
       <div className="w-full h-screen -mt-[12px] bg-gray-200 mix-blend-multiply font-roboto">
+=======
+      <div className="w-full h-screen bg-gray-200 mix-blend-multiply -m-1 p-0">
+>>>>>>> isha
         <div className="h-full w-2/3 bg-primary-700 mix-blend-multiply">
           <div className="absolute top-20 left-10 w-70 md: flex-row items-center sm:text-sm">
             <h1 className="text-5xl font-bold text-center mb-4 mt-20 text-secondary-400 ">
