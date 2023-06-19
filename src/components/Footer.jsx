@@ -8,7 +8,6 @@ import {
 } from "react-icons/bs";
 import { HiOutlineEnvelope } from "react-icons/hi2";
 import { Link } from "react-router-dom";
-import { TextField } from "@mui/material";
 
 const Footer = () => {
   return (

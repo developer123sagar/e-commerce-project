@@ -6,7 +6,7 @@ import { AiOutlineShoppingCart, AiOutlineStar } from "react-icons/ai";
 import { FaHeart, FaStar } from "react-icons/fa";
 import { IoNewspaperOutline } from "react-icons/io5";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 
 const Details = () => {
@@ -60,6 +60,9 @@ const Details = () => {
   //dispatching addtocart
   const dispatch = useDispatch();
 
+  //login status check from auth slice ,redux
+  const { isLoggedIn } = useSelector((state) => state.auth);
+
   // toast success message
   const toastSuccMsg = (prodName) => {
     toast.success(`${prodName.title} added in your cart`, {
@@ -88,12 +91,40 @@ const Details = () => {
     });
   };
 
+   //not logged in message
+   const toastNotLogMsg = ()=>{
+    toast.info('Please Login to Add items',{
+      position: "top-left",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    })
+  }
+
+  // navigating to login if not logged in 
+  const navigate = useNavigate()
+
   const handleAddCart = (product) => {
-    if (cartDatas.length < 5) {
-      toastSuccMsg(product);
-      dispatch(addProduct(product));
-    } else {
-      toastFailMsg();
+    const { uid } = product;
+    const categoryItems = cartDatas.filter(
+      (item) => item.uid === uid
+    );
+    if (isLoggedIn) {
+      if (categoryItems.length < 5) {
+        toastSuccMsg(product);
+        dispatch(addProduct(product));
+      } else {
+        toastFailMsg();
+      }
+    }else{
+      toastNotLogMsg()
+        setTimeout(() => {
+          navigate("/login");
+        }, 2000);
     }
   };
 

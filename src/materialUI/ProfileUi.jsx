@@ -10,10 +10,12 @@ import Logout from "@mui/icons-material/Logout";
 import { FaUser } from "react-icons/fa";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { setLoginStatus, setUserEmail } from "Redux/Auth/AuthSlice";
+import { emptyCart } from "Redux/Slices/CartProduct";
 
 export default function ProfileUi() {
+
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -22,6 +24,8 @@ export default function ProfileUi() {
 
   //getting state of authslice
   const { isLoggedIn, userEmail } = useSelector((state) => state.auth);
+  const { cartDatas } = useSelector((state) => state.cart);
+
 
   //   dispatching actions
   const dispatch = useDispatch();
@@ -30,6 +34,10 @@ export default function ProfileUi() {
     setAnchorEl(null);
   };
 
+  // navigating to home pge if not logout
+  const navigate = useNavigate();
+
+  console.log(cartDatas)
   //logout
   const handleLogout = () => {
     setAnchorEl(null);
@@ -39,6 +47,8 @@ export default function ProfileUi() {
     // removing islogged in and email from localstorage
     localStorage.removeItem("isLoggedIn");
     localStorage.removeItem("userEmail");
+    dispatch(emptyCart())
+    navigate("/");
   };
 
   return (
@@ -55,7 +65,7 @@ export default function ProfileUi() {
                 aria-haspopup="true"
                 aria-expanded={open ? "true" : undefined}
               >
-                <Link to={"/"}>
+                <Link>
                   <span className="flex flex-col items-center gap-y-1">
                     <FaUser className="text-base lg:text-lg" color="white" />
                     <p className="hidden md:block text-xs lg:text-base text-white">

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AiFillStar, AiOutlineShoppingCart } from "react-icons/ai";
 import axios from "axios";
 import SkeletonUI from "materialUI/SkeletonUI";
@@ -38,6 +38,26 @@ const Category = (props) => {
   const dispatch = useDispatch();
   const { cartDatas } = useSelector((state) => state.cart);
 
+  //login status check from auth slice ,redux
+  const { isLoggedIn } = useSelector(state => state.auth)
+
+  // navigating to login if not logged in 
+  const navigate = useNavigate()
+
+  //not logged in message
+  const toastNotLogMsg = ()=>{
+    toast.info('Please Login to Add items',{
+      position: "top-left",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    })
+  }
+
   const addtoCart = (product) => {
     const { uid } = product;
     const categoryItems = cartDatas.filter(
@@ -58,8 +78,15 @@ const Category = (props) => {
         }
       );
     } else {
-      dispatch(addProduct(product));
-      toastMsg(product);
+      if(isLoggedIn){
+        dispatch(addProduct(product));
+        toastMsg(product);
+      }else{
+        toastNotLogMsg()
+        setTimeout(() => {
+          navigate("/login");
+        }, 2000);
+      }
     }
   };
 
