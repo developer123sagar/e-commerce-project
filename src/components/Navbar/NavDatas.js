@@ -1,6 +1,5 @@
-import { FaGlobe, FaHeart, FaHome, FaUser, FaUsers } from "react-icons/fa";
+import { FaGlobe, FaHome, FaUsers } from "react-icons/fa";
 import { ImLeaf } from "react-icons/im";
-import { IoCartSharp } from "react-icons/io5";
 
 export const navLinks = [
   { name: "HOME", to: "/", icon: FaHome },
@@ -9,8 +8,4 @@ export const navLinks = [
   { name: "CONTACT US", to: "/contact", icon: FaGlobe },
 ];
 
-export const navIconName = [
-  { name: "Login", to:'/login', icon: FaUser, loginMenu: true },
-  { name: "Wishlist", to: "/wishlist", icon: FaHeart },
-  { name: "Cart", to: "/cart", icon: IoCartSharp, isBadge: true },
-];
+
