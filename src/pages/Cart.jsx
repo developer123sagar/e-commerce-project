@@ -25,12 +25,6 @@ const Cart = () => {
     return title === "price" ? item.price * quantity : item.MRP * quantity;
   };
 
-  const handleAddProd = (uid, item) => {
-    const newQuantity = (quantities[uid] || 1) + 1;
-      newQuantity <= 5 && dispatch(addProduct(item));
-      newQuantity <= 5 && handleQuantityChange(uid, newQuantity);
-  };
-
   const uniqueCartSet = new Set(cartDatas.map(JSON.stringify));
 
   const uniqueCartArray = Array.from(uniqueCartSet).map(JSON.parse);
