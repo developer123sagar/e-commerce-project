@@ -10,7 +10,7 @@ export const navLinks = [
 ];
 
 export const navIconName = [
-  { name: "Login", icon: FaUser, loginMenu: true },
+  { name: "Login", to:'/login', icon: FaUser, loginMenu: true },
   { name: "Wishlist", to: "/wishlist", icon: FaHeart },
   { name: "Cart", to: "/cart", icon: IoCartSharp, isBadge: true },
 ];

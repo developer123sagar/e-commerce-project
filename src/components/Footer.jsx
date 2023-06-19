@@ -29,7 +29,7 @@ const Footer = () => {
                   <form className="flex flex-wrap gap-2">
                     <input
                       id="email"
-                      className="text-black h-10 rounded-lg"
+                      className="text-black h-10 rounded-lg focus:outline-none px-4 py-2 mr-4"
                       type="email"
                       placeholder="Enter your email:"
                       required

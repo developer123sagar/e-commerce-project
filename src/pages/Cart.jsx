@@ -42,17 +42,15 @@ const Cart = () => {
     setQuantities(initialQuantities);
   }, [cartDatas]);
 
-  console.log(cartDatas);
+  // console.log(cartDatas);
 
   //checkbox funcitonality
   const handleCheckboxChange = (uid) => {
     if (checkedItems.includes(uid)) {
-      // If the UID is already in the selectedItems array, remove it
       setCheckedItems((prevSelectedItems) =>
         prevSelectedItems.filter((itemUid) => itemUid !== uid)
       );
     } else {
-      // If the UID is not in the selectedItems array, add it
       setCheckedItems((prevSelectedItems) => [...prevSelectedItems, uid]);
     }
   };
@@ -61,9 +59,9 @@ const Cart = () => {
     return cartDatas.filter((item) => checkedItems.includes(item.uid));
   };
 
-  console.log(getCheckedItems(),'checkeditems')
+  console.log(getCheckedItems(), "checkeditems");
   // total sum of checked items
-  const totalSum = getCheckedItems().reduce((sum,item)=> sum+item.price,0)
+  const totalSum = getCheckedItems().reduce((sum, item) => sum + item.price, 0);
 
   return (
     <div className="mt-24 font-roboto px-5">
@@ -194,7 +192,9 @@ const Cart = () => {
             </p>
             <p className="flex justify-between text-sm">
               <span className="text-gray-500">Total</span>
-              <button className="text-base text-black">Rs. {totalSum && totalSum + 50}</button>
+              <button className="text-base text-black">
+                Rs. {totalSum && totalSum + 50}
+              </button>
             </p>
             <button className="bg-orange-500 w-full mx-auto mt-4 py-3 rounded text-white">
               PROCEED TO CHECKOUT
