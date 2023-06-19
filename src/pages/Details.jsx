@@ -102,7 +102,7 @@ const Details = () => {
       <div className="absolute top-24 p-2 flex gap-4 w-full font-roboto">
         <ToastContainer />
         {/* image part */}
-        <div className="basis-1/2 flex gap-4 flex-wrap">
+        <div className="basis-1/2 flex gap-2 flex-wrap">
           {singleProd &&
             prodImg.map((img, id) => (
               <img
