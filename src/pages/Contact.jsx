@@ -1,48 +1,60 @@
 import React from 'react'
+import {
+  BsTelephone,
+  BsFillGeoAltFill
+} from "react-icons/bs";
+import { HiOutlineEnvelope, HiOutlineLocation } from "react-icons/hi2";
 
 
 const Contact = () => {
   return (
-    // <div className=' bg-primary-700 mix-blend-multiply h-screen'>
-    <div className='flex w-full justify-center items-center  '>
-      <div className=' grid flex-col md:flex-row mt-5 bg-primary-700 mix-blend-multiply w-full max-w-4xl p-8 rounded-xl text-black'>
 
-        <h1 className='text-center font-bold text-4xl '>
+    <div className='flex justify-center items-center mt-5 p-10'>
+      <div className=' flex bg-gray-200 w-3/5 h-fit rounded-lg'>
+        <div className='basis-4/12 bg-primary-700 mix-blend-multiply p-3'>
+          <div className='text-white mt-5'>
+            <h1 className='text-3xl pb-2'>Let's get in touch</h1>
+            <p>We are open for any suggestion or to have a chat</p>
+          </div>
+          <div className='text-white text-lg p-4'>
+            <ul>
+              <li className=' flex py-4'> <span className='pr-2'><BsFillGeoAltFill size="30"/></span>Address:Kausaltar,Bhaktapur</li>
+              <li className='flex py-4'><span className='pr-2'> <BsTelephone size="30" /> </span>Phone: +977 156 4567 876</li>
+              <li className='flex py-4'><span className='pr-2'> <HiOutlineEnvelope size="30" /> </span>Email: info@gmail.com</li>
+              <li></li>
+            </ul>
+          </div>
+        </div>
+        <div className='grid basis-4/6 p-8'>
+          <h1 className='text-left font-bold text-4xl '>
           Contact Us</h1><br />
+          <form>
+            <div className='flex flex-wrap  space-y-3'>
 
-        <div className='flex flex-col md:flex-row bg-white rounded-lg p-10'>
+              <div className='flex grid-col space-x-5 rounded-lg'>
+                <div className='grid'>
+                  <label>FULL NAME</label>
+                  <input type="text" placeholder='Your name' className='ring-1 ring-gray-200 rounded-md w-full  px-4 py-3' />
+                </div>
+                <div className='grid'>
+                  <label >EMAIL ADDRESS</label>
+                  <input type="text" placeholder='Your email-address' className='ring-1 ring-gray-200  rounded-md w-full px-4 py-3' />
+                </div>
+              </div><br />
 
-          <div className=' '>
-            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d28266.32840609563!2d85.42446664999999!3d27.67739795!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2snp!4v1686559704748!5m2!1sen!2snp"
-              className='w-800 h-full '></iframe>
-          </div>
-
-
-          <div className='p-5'>
-            <form className='flex flex-col'>
-              <div className='flex flex-wrap  space-y-3'>
-              {/* <div className='grid p-2'> */}
-
-              <label>FULL NAME</label>
-              <input type="text" placeholder='Your name' className='ring-1 ring-gray-200 w-full rounded-lg px-4 py-2' />
-              {/* </div> */}
-              {/* <div className='grid f p-2'> */}
-              <label >EMAIL ADDRESS</label>
-              <input type="text" placeholder='Your email-address' className='ring-1 ring-gray-200 w-full rounded-md px-4 py-2' />
-              {/* </div> */}
-              {/* </div> */}
               <label>SUBJECT</label>
-              <input type="text" placeholder='subject' className='ring-1 ring-gray-200 w-full rounded-md px-4 py-2' />
+              <input type="text" placeholder='Subject' className='ring-1 ring-gray-200 w-full rounded-md px-4 py-3' />
               <label>MESSAGE</label>
-              <input type="text" placeholder='message' className='ring-1 ring-gray-200 w-full rounded-md h-20 px-4 py-2' />
+              <input type="text" placeholder='Message' className='ring-1 ring-gray-200 w-full rounded-md h-20 px-4 py-3' />
               <button className='w-20 h-10 bg-emerald-600 hover:bg-emerald-500 rounded-lg'>Submit</button>
-              </div>
-            </form>
-          
-          </div>
+            </div>
+          </form>
         </div>
       </div>
     </div>
+   
+
+
   )
 }
 
