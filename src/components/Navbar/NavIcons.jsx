@@ -1,46 +1,42 @@
 import { Badge } from "@mui/material";
 import { Link } from "react-router-dom";
-import { navIconName } from "./NavDatas";
-import { IoSearch } from "react-icons/io5";
+import { IoCartSharp, IoSearch } from "react-icons/io5";
 import { useRef } from "react";
 import { useSelector } from "react-redux";
+import { FaHeart } from "react-icons/fa";
 
 const NavIcons = () => {
-  const { cartDatas } = useSelector(state => state.cart)
+  const { cartDatas } = useSelector((state) => state.cart);
 
-  const css = useRef()
+  const css = useRef();
   const IconComponents = () => {
-    return navIconName.map((item, index) => (
-      <Link to={item.to} key={index}>
-        {item.isBadge ? (
+    return (
+      <>
+        <Link to="/wishlist">
           <Badge badgeContent={cartDatas.length} color="error">
-            <span
-              className="flex flex-col items-center gap-y-1"
-            >
-              <item.icon className="text-base lg:text-lg" color="white" />
-              <p className="hidden md:block text-xs lg:text-base">
-                {item.name}
-              </p>
+            <span className="flex flex-col items-center gap-y-1">
+              <FaHeart className="text-base lg:text-lg" color="white" />
+              <p className="hidden md:block text-xs lg:text-base">Wishlist</p>
             </span>
           </Badge>
-        ) : (
-          <span
-            className="flex flex-col items-center gap-y-1"
-          >
-            <item.icon className="text-base lg:text-lg" color="white" />
-            <p className="hidden md:block text-xs lg:text-base">{item.name}</p>
+        </Link>
+        <Link to={"/cart"}>
+          <span className="flex flex-col items-center gap-y-1">
+            <IoCartSharp  className="text-base lg:text-lg" color="white" />
+            <p className="hidden md:block text-xs lg:text-base">Cart</p>
           </span>
-        )}
-      </Link>
-    ));
+        </Link>
+      </>
+    );
   };
 
-  const handleSearch = () =>{
+  const handleSearch = () => {
     const dom = css.target;
-    dom.addClass = " hidden"
-  }
+    dom.addClass = " hidden";
+  };
 
-  const customCss = "flex basis-2/4 md:basis-0 justify-between items-center gap-x-6 md:gap-x-8 text-fuchsia-50 text-sm md:-ml-16"
+  const customCss =
+    "flex basis-2/4 md:basis-0 justify-between items-center gap-x-6 md:gap-x-8 text-fuchsia-50 text-sm md:-ml-16";
 
   return (
     <div ref={css} className={customCss}>

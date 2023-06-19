@@ -15,7 +15,7 @@ const Main = () => {
               We are tending to thousands of details it takes to create a
               a custom home tailored to your lifestyle.
             </p>
-            <button className="border-solid border-2 p-3 bg-secondary-400 hover:bg-yellow-300 text-s w-55 font-bold text-center mt-20 ml-60 text-white">
+            <button className="px-8 py-3 bg-lime-500 hover:bg-emerald-500 rounded text-lg transition-all text-center mt-20 ml-60 text-white">
               Explore More
             </button>
           </div>

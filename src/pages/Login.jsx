@@ -4,13 +4,21 @@ import loginImg from "images/loginImg.jpg";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
+import { RotatingLines } from "react-loader-spinner";
+import { useDispatch } from "react-redux";
+import { setLoginStatus, setUserEmail } from "Redux/Auth/AuthSlice";
 
 const Login = () => {
+  const dispatch = useDispatch();
+
   // usestate for loginform
   const [loginForm, setLoginForm] = useState({
     email: "",
     password: "",
   });
+
+  //usestate for loader spinner
+  const [loading, setLoading] = useState(false);
 
   //navigating to login page
   const navigate = useNavigate();
@@ -46,20 +54,31 @@ const Login = () => {
   // handle login submit
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    setLoading(true);
     try {
       await axios.post(
         "https://ecommerce.digitalwebninja.com/api/login",
         loginForm
       );
-      setLoginForm({ email: "", password: "" });
       userCreaToast();
+      setLoginForm({ email: "", password: "" });
+      setLoading(false);
+
+      // Setting login status, showaccountmenu and email in redux
+      dispatch(setLoginStatus(true));
+      dispatch(setUserEmail(loginForm.email));
+
+      // Storing login status and user email in localStorage
+      localStorage.setItem("isLoggedIn", "true");
+      localStorage.setItem("userEmail", loginForm.email);
+
       setTimeout(() => {
         navigate("/");
       }, 1000);
     } catch (error) {
       const message = error.message;
       userCrearFToast(message);
+      setLoading(false);
     }
   };
 
@@ -106,9 +125,15 @@ const Login = () => {
               </div>
               <button
                 type="submit"
-                className="w-full py-2 my-2 bg-primary-700 mix-blend-multiply hover:bg-green-700 text-white mt-6 rounded transition-all"
+                className="w-full py-3 my-2 bg-primary-700 mix-blend-multiply hover:bg-green-700 text-white mt-6 rounded transition-all"
               >
-                Sign In
+                {loading ? (
+                  <p className="w-fit mx-auto">
+                    <RotatingLines strokeColor="yellow" width="30" />
+                  </p>
+                ) : (
+                  <>Log In</>
+                )}
               </button>
               <p className="text-center">Forgot password or name?</p>
             </form>

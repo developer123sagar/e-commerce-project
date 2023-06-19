@@ -4,6 +4,7 @@ import { navLinks } from "./NavDatas";
 import NavIcons from "./NavIcons";
 import MenuDrawer from "materialUI/MenuDrawer";
 import logo from "images/logo1.png";
+import ProfileUi from "materialUI/ProfileUi";
 
 const Navbar = () => {
   return (
@@ -30,6 +31,7 @@ const Navbar = () => {
         />
       </div>
       <NavIcons />
+      <ProfileUi />
       <MenuDrawer />
     </div>
   );

@@ -1,9 +1,11 @@
+import { addProduct } from "Redux/Slices/CartProduct";
 import { RequestAPI } from "RequestAPI";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { AiOutlineShoppingCart, AiOutlineStar } from "react-icons/ai";
 import { FaHeart, FaStar } from "react-icons/fa";
 import { IoNewspaperOutline } from "react-icons/io5";
+import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 
 const Details = () => {
@@ -52,24 +54,28 @@ const Details = () => {
     singleProd.rating?.rating &&
     Object.values(singleProd.rating).slice(2);
 
+  //dispatching addtocart
+  const dispatch = useDispatch();
+
   return (
     <>
       <div className="absolute top-24 p-2 flex gap-4 w-full font-roboto">
-        {singleProd && (
-          <>
-            {/* image part */}
-            <div className="basis-1/2 flex gap-4 flex-wrap">
-              {prodImg.map((img, id) => (
-                <img
-                  key={id}
-                  src={img}
-                  alt="product"
-                  className="h-[450px] w-[320px] object-cover shadow-xl rounded border-gray-200 border-[1px]"
-                />
-              ))}
-            </div>
-            {/* product details part */}
-            <div className="basis-1/2 pl-10">
+        {/* image part */}
+        <div className="basis-1/2 flex gap-4 flex-wrap">
+          {singleProd &&
+            prodImg.map((img, id) => (
+              <img
+                key={id}
+                src={img}
+                alt="product"
+                className="h-[450px] w-[320px] object-cover shadow-xl rounded border-gray-200 border-[1px]"
+              />
+            ))}
+        </div>
+        {/* product details part */}
+        <div className="basis-1/2 pl-10">
+          {singleProd && (
+            <>
               <p className="text-xl font-semibold mb-1">{singleProd.title}</p>
               <p className="text-gray-500 mb-1 text-lg">
                 {singleProd.subtitle}
@@ -93,15 +99,22 @@ const Details = () => {
                   OFF)
                 </span>
               </p>
-              <p className="text-sm text-pink-600 mb-4">Inclusive all taxes</p>
-              <div className="flex gap-4 mb-5">
-                <button className="w-[30%] flex items-center justify-center gap-3 bg-emerald-400 py-3 px-2 rounded text-white shadow-lg">
-                  ADD TO CART <AiOutlineShoppingCart size={25} />
-                </button>
-                <button className="w-[30%] flex items-center justify-center gap-3 bg-purple-400 py-3 px-2 rounded text-white shadow-lg">
-                  WISHLIST <FaHeart size={25} />
-                </button>
-              </div>
+            </>
+          )}
+          <p className="text-sm text-pink-600 mb-4">Inclusive all taxes</p>
+          <div className="flex gap-4 mb-5">
+            <button
+              onClick={()=>dispatch(addProduct(singleProd))}
+              className="w-[30%] flex items-center justify-center gap-3 bg-emerald-400 py-3 px-2 rounded text-white shadow-lg"
+            >
+              ADD TO CART <AiOutlineShoppingCart size={25} />
+            </button>
+            <button className="w-[30%] flex items-center justify-center gap-3 bg-purple-400 py-3 px-2 rounded text-white shadow-lg">
+              WISHLIST <FaHeart size={25} />
+            </button>
+          </div>
+          {singleProd && (
+            <>
               <p className="mb-4">
                 Seller:{" "}
                 <span className="text-lime-600">{singleProd.seller}</span>
@@ -188,9 +201,9 @@ const Details = () => {
                   </div>
                 </>
               )}
-            </div>
-          </>
-        )}
+            </>
+          )}
+        </div>
       </div>
     </>
   );
