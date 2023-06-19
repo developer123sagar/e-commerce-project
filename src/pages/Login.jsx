@@ -1,7 +1,7 @@
 import loginImg from "images/loginImg.jpg";
 import { Link } from "react-router-dom";
 
-const Login = (props) => {
+const Login = () => {
   return (
     <>
       <div className="w-full h-screen flex">
@@ -38,7 +38,9 @@ const Login = (props) => {
               </button>
               <p className="text-center">Forget password or username?</p>
             </form>
-            <Link to={'/register'}>sign up</Link>
+            <div className="text-center underline">
+            <Link to={'/register'}>Don't have an account? Sign Up</Link>
+            </div>
           </div>
         </div>
       </div>

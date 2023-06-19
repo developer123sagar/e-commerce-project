@@ -1,4 +1,8 @@
-import { addProduct } from "Redux/Slices/CartProduct";
+import {
+  addProduct,
+  removeOneProd,
+  removeProduct,
+} from "Redux/Slices/CartProduct";
 import { useEffect } from "react";
 import { useState } from "react";
 import { AiFillDelete, AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
@@ -8,8 +12,9 @@ import { useDispatch, useSelector } from "react-redux";
 
 const Cart = () => {
   const { cartDatas } = useSelector((state) => state.cart);
+  const dispatch = useDispatch();
   const [quantities, setQuantities] = useState({});
-  const dispatch = useDispatch()
+  const [checkedItems, setCheckedItems] = useState([]);
 
   const handleQuantityChange = (uid, newValue) => {
     setQuantities((prevQuantities) => ({ ...prevQuantities, [uid]: newValue }));
@@ -43,8 +48,28 @@ const Cart = () => {
     setQuantities(initialQuantities);
   }, [cartDatas]);
 
-  console.log(quantities, "quantities");
-  console.log(cartDatas,'cartdatas')
+  console.log(cartDatas);
+
+  //checkbox funcitonality
+  const handleCheckboxChange = (uid) => {
+    if (checkedItems.includes(uid)) {
+      // If the UID is already in the selectedItems array, remove it
+      setCheckedItems((prevSelectedItems) =>
+        prevSelectedItems.filter((itemUid) => itemUid !== uid)
+      );
+    } else {
+      // If the UID is not in the selectedItems array, add it
+      setCheckedItems((prevSelectedItems) => [...prevSelectedItems, uid]);
+    }
+  };
+
+  const getCheckedItems = () => {
+    return cartDatas.filter((item) => checkedItems.includes(item.uid));
+  };
+
+  console.log(getCheckedItems(),'checkeditems')
+  // total sum of checked items
+  const totalSum = getCheckedItems().reduce((sum,item)=> sum+item.price,0)
 
   return (
     <div className="mt-24 font-roboto px-5">
@@ -74,7 +99,12 @@ const Cart = () => {
                 {item.seller}
               </p>
               <div className="flex justify-between items-center mt-4 pb-4">
-                <input type="checkbox" name="singleItem" id={item.uid} />
+                <input
+                  type="checkbox"
+                  name="singleItem"
+                  id={item.uid}
+                  onChange={() => handleCheckboxChange(item.uid)}
+                />
                 <img
                   src={item.primaryImage}
                   alt={item.title}
@@ -110,6 +140,7 @@ const Cart = () => {
                   </p>
                   <p className="flex items-center justify-between">
                     <AiFillDelete
+                      onClick={() => dispatch(removeProduct(item.uid))}
                       className="text-primary-700 hover:cursor-pointer"
                       size={23}
                     />{" "}
@@ -121,8 +152,10 @@ const Cart = () => {
                   <AiOutlineMinus
                     onClick={() => {
                       const newQuantity = (quantities[item.uid] || 1) - 1;
-                      newQuantity >= 1 &&
+                      if (newQuantity >= 1) {
                         handleQuantityChange(item.uid, newQuantity);
+                        dispatch(removeOneProd(item.uid));
+                      }
                     }}
                     className="border-[1px] border-gray-500 p-1 hover:cursor-pointer"
                     size={25}
@@ -134,7 +167,13 @@ const Cart = () => {
                     className="w-[30%] bg-transparent border-[1px] border-black focus:outline-none pl-2"
                   />{" "}
                   <AiOutlinePlus
-                    onClick={()=>handleAddProd(item.uid,item)}
+                    onClick={() => {
+                      const newQuantity = (quantities[item.uid] || 1) + 1;
+                      if (newQuantity <= 5) {
+                        handleQuantityChange(item.uid, newQuantity);
+                        dispatch(addProduct(item));
+                      }
+                    }}
                     className="border-[1px] border-gray-500 p-1 hover:cursor-pointer"
                     size={25}
                   />
@@ -147,9 +186,25 @@ const Cart = () => {
         <div className="basis-[40%]">
           <div className="bg-slate-100 shadow-lg rounded py-3 px-1">
             <p>Order Summary</p>
-            <p className="text-gray-500 text-sm">
-              Subtotal ({cartDatas.length} ITEMS)
+            <p className="text-gray-500 text-sm flex justify-between mb-1">
+              <span>Price Details ({getCheckedItems().length} ITEMS)</span>
+              <span>RS. {totalSum}</span>
             </p>
+            <p className="text-gray-500 text-sm flex justify-between mb-1">
+              <span>Shipping Fee</span>
+              <span>Rs. 50</span>
+            </p>
+            <p className="flex justify-between text-sm mb-1">
+              <span className="text-gray-500">Cuppon Discount</span>
+              <button className="text-pink-500">Apply cuppon</button>
+            </p>
+            <p className="flex justify-between text-sm">
+              <span className="text-gray-500">Total</span>
+              <button className="text-base text-black">Rs. {totalSum && totalSum + 50}</button>
+            </p>
+            <button className="bg-orange-500 w-full mx-auto mt-4 py-3 rounded text-white">
+              PROCEED TO CHECKOUT
+            </button>
           </div>
         </div>
       </div>
