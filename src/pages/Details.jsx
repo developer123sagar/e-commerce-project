@@ -5,13 +5,16 @@ import React, { useEffect, useState } from "react";
 import { AiOutlineShoppingCart, AiOutlineStar } from "react-icons/ai";
 import { FaHeart, FaStar } from "react-icons/fa";
 import { IoNewspaperOutline } from "react-icons/io5";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
 
 const Details = () => {
   const { id, category } = useParams();
   const [selectedDatas, setselectedDatas] = useState([]);
   const [singleProd, setSingleProd] = useState();
+  const { cartDatas } = useSelector((state) => state.cart);
+  // console.log(cartDatas.length)
 
   useEffect(() => {
     const getAPI = () => {
@@ -57,9 +60,47 @@ const Details = () => {
   //dispatching addtocart
   const dispatch = useDispatch();
 
+  // toast success message
+  const toastSuccMsg = (prodName) => {
+    toast.success(`${prodName.title} added in your cart`, {
+      position: "top-left",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
+  };
+
+  // toast failed msg
+  const toastFailMsg = () => {
+    toast.error("You can not add more than 5 items", {
+      position: "top-left",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
+  };
+
+  const handleAddCart = (product) => {
+    if (cartDatas.length < 5) {
+      toastSuccMsg(product);
+      dispatch(addProduct(product));
+    } else {
+      toastFailMsg();
+    }
+  };
+
   return (
     <>
       <div className="absolute top-24 p-2 flex gap-4 w-full font-roboto">
+        <ToastContainer />
         {/* image part */}
         <div className="basis-1/2 flex gap-4 flex-wrap">
           {singleProd &&
@@ -104,7 +145,7 @@ const Details = () => {
           <p className="text-sm text-pink-600 mb-4">Inclusive all taxes</p>
           <div className="flex gap-4 mb-5">
             <button
-              onClick={()=>dispatch(addProduct(singleProd))}
+              onClick={() => handleAddCart(singleProd)}
               className="w-[30%] flex items-center justify-center gap-3 bg-emerald-400 py-3 px-2 rounded text-white shadow-lg"
             >
               ADD TO CART <AiOutlineShoppingCart size={25} />
